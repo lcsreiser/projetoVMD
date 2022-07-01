@@ -276,8 +276,6 @@ Requisição **bem sucedida** retorna a seguinte resposta:
 
 <br />
 
-**Rota necessita de autenticação**
-
 `DELETE/recipe/<financeiroId>`
 
 ```json
