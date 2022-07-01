@@ -39,11 +39,9 @@ export class Cliente {
   @Column()
   numero: number;
 
-  @Column()
+  @Column({ type: "float" })
   saldo_conta: number;
 
-  @OneToMany(() => Financeiro, (financeiro) => financeiro.owner, {
-    eager: true,
-  })
+  @OneToMany(() => Financeiro, (financeiro) => financeiro.owner)
   financeiro: Financeiro[];
 }

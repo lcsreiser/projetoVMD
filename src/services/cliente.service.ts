@@ -24,11 +24,11 @@ interface IClienteUpdated {
 
 class ClienteService {
   create = async ({ validated }: Request): Promise<AssertsShape<any>> => {
-    const user: Cliente = await clienteRepository.save({
+    const cliente: Cliente = await clienteRepository.save({
       ...(validated as Cliente),
     });
 
-    return await serializedCreateClienteSchema.validate(user, {
+    return await serializedCreateClienteSchema.validate(cliente, {
       stripUnknown: true,
     });
   };
@@ -41,13 +41,13 @@ class ClienteService {
     });
   };
 
-  update = async (id: string, infoToUpdated: IClienteUpdated) => {
+  update = async (cpf: string, infoToUpdated: IClienteUpdated) => {
     const clienteUpdated = await clienteRepository.findOneBy({
-      financeiroId: id,
+      cpf: cpf,
     });
     await clienteRepository.update(clienteUpdated.clienteId, infoToUpdated);
     const clienteResponse = await clienteRepository.findOneBy({
-      financeiroId: id,
+      cpf: cpf,
     });
 
     return await serializedCreateClienteSchema.validate(clienteResponse, {

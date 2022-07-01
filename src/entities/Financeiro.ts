@@ -24,6 +24,8 @@ export class Financeiro {
   @Column()
   data: string;
 
-  @ManyToOne(() => Cliente, (cliente) => cliente.financeiro)
+  @ManyToOne(() => Cliente, (cliente) => cliente.financeiro, {
+    eager: true,
+  })
   owner: Cliente;
 }

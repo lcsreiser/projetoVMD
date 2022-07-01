@@ -52,7 +52,6 @@ const createClienteSchema = yup.object().shape({
 });
 
 const serializedCreateClienteSchema = yup.object().shape({
-  clienteId: yup.string().uuid().required(),
   nome: yup.string().required(),
   cpf: yup
     .string()
@@ -79,7 +78,7 @@ const serializedGetClienteSchema = yup
   .array()
   .of(
     yup.object().shape({
-      clienteId: yup.string().uuid().required(),
+      clienteId: yup.string().required(),
       nome: yup.string().required(),
       cpf: yup
         .string()

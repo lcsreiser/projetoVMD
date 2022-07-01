@@ -3,7 +3,7 @@ import AppDataSource from "../data-source";
 import { Cliente } from "../entities/Cliente";
 
 interface IClienteRepo {
-  save: (cliente: Cliente) => Promise<Cliente>;
+  save: (cliente: Partial<Cliente>) => Promise<Cliente>;
   all: () => Promise<Cliente[]>;
   findOne: (payload: object) => Promise<Cliente>;
   findOneBy: (payload: object) => Promise<Cliente>;
@@ -18,7 +18,7 @@ class ClienteRepo implements IClienteRepo {
     this.repo = AppDataSource.getRepository(Cliente);
   }
 
-  save = async (cliente: Cliente) => await this.repo.save(cliente);
+  save = async (cliente: Partial<Cliente>) => await this.repo.save(cliente);
 
   all = async () => await this.repo.find();
 

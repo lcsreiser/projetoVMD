@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { financeiroController } from "../controllers";
 import validateSchemaMiddleware from "../middlewares/validateSchema.middleware";
+import verifyOwner from "../middlewares/verifyOwner.middleware";
 import { createFinanceiroSchema } from "../schemas";
 
 const route = Router();
@@ -8,6 +9,7 @@ const route = Router();
 route.post(
   "",
   validateSchemaMiddleware(createFinanceiroSchema),
+  verifyOwner,
   financeiroController.create
 );
 route.get("", financeiroController.getAll);

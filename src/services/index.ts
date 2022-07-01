@@ -1,5 +1,4 @@
-// import itemService from "./item.service";
 import clienteService from "./cliente.service";
-//import itemService from "./item.service";
+import financeiroService from "./financeiro.service";
 
-export { clienteService };
+export { clienteService, financeiroService };

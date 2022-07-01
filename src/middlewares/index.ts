@@ -1,7 +1,5 @@
 import validateSchemaMiddleware from "./validateSchema.middleware";
 
-import verifyClienteExists from "./verifyClienteExists.middleware";
+import verifyClient from "./verifyClient.middleware";
 
-import validateDate from "./validateDate.middleware";
-
-export { validateDate, validateSchemaMiddleware, verifyClienteExists };
+export { validateSchemaMiddleware, verifyClient };

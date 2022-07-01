@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { clienteController } from "../controllers";
 import validateSchemaMiddleware from "../middlewares/validateSchema.middleware";
-import verifyClienteExists from "../middlewares/verifyClienteExists.middleware";
+import verifyClient from "../middlewares/verifyClient.middleware";
 import { createClienteSchema } from "../schemas/cliente";
 
 const route = Router();
@@ -9,7 +9,7 @@ const route = Router();
 route.post(
   "",
   validateSchemaMiddleware(createClienteSchema),
-  verifyClienteExists,
+  verifyClient,
   clienteController.create
 );
 

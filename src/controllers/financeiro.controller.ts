@@ -27,7 +27,7 @@ class FinanceiroController {
     const cliente = await financeiroService.delete(req);
 
     cliente
-      ? res.status(202).json("Financeiro deletado com sucesso")
+      ? res.status(202).json({ message: "Financeiro deletado com sucesso" })
       : res.status(404).json({ error: "Financeiro não encontrado" });
   };
 }
