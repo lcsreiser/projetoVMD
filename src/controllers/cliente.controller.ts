@@ -27,7 +27,7 @@ class ClienteController {
     const cliente = await clienteService.delete(req);
 
     cliente
-      ? res.status(202).json("Cliente deletado com sucesso")
+      ? res.status(202).json({ message: "Cliente deletado com sucesso" })
       : res.status(404).json({ error: "Cliente não encontrado" });
   };
 }

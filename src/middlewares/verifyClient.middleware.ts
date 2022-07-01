@@ -4,11 +4,7 @@ import { Cliente } from "../entities/Cliente";
 import { clienteRepository } from "../repositories";
 import { ErrorHandler } from "../errors/appError";
 
-const verifyClienteExists = async (
-  req: Request,
-  _: Response,
-  next: NextFunction
-) => {
+const verifyClient = async (req: Request, _: Response, next: NextFunction) => {
   const foundCliente: Cliente | null = await clienteRepository.findOne({
     cpf: (req.validated as Cliente).cpf,
   });
@@ -23,4 +19,4 @@ const verifyClienteExists = async (
   return next();
 };
 
-export default verifyClienteExists;
+export default verifyClient;

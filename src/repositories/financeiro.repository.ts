@@ -1,9 +1,9 @@
-import { ObjectType, Repository, UpdateResult, DeleteResult } from "typeorm";
+import { Repository, UpdateResult, DeleteResult } from "typeorm";
 import AppDataSource from "../data-source";
 import { Financeiro } from "../entities/Financeiro";
 
 interface IFinanceiroRepo {
-  save: (financeiro: Financeiro) => Promise<Financeiro>;
+  save: (financeiro: Partial<Financeiro>) => Promise<Financeiro>;
   all: () => Promise<Financeiro[]>;
   findOne: (payload: object) => Promise<Financeiro>;
   findOneBy: (payload: object) => Promise<Financeiro>;
@@ -18,7 +18,8 @@ class FinanceiroRepository implements IFinanceiroRepo {
     this.repo = AppDataSource.getRepository(Financeiro);
   }
 
-  save = async (financeiro: Financeiro) => await this.repo.save(financeiro);
+  save = async (financeiro: Partial<Financeiro>) =>
+    await this.repo.save(financeiro);
 
   all = async () => await this.repo.find();
 

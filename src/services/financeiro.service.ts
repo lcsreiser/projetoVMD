@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { AssertsShape } from "yup/lib/object";
-import { Financeiro } from "../entities";
-import { financeiroRepository } from "../repositories";
+import { Cliente, Financeiro } from "../entities";
+import { clienteRepository, financeiroRepository } from "../repositories";
 import {
   serializedCreateFinanceiroSchema,
   serializedGetFinanceiroSchema,
@@ -16,8 +16,15 @@ interface IFinanceiroUpdated {
 
 class FinanceiroService {
   create = async ({ validated }: Request): Promise<AssertsShape<any>> => {
-    const financeiro: Financeiro = await financeiroRepository.save({
-      ...(validated as Financeiro),
+    const cliente: Cliente | null = await clienteRepository.findOne({
+      cpf: validated.cpf,
+    });
+
+    const owner = cliente.clienteId;
+
+    const financeiro: Financeiro | any = await financeiroRepository.save({
+      ...(validated as Financeiro | any),
+      owner,
     });
 
     return await serializedCreateFinanceiroSchema.validate(financeiro, {

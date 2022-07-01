@@ -24,6 +24,10 @@ const serializedGetFinanceiroSchema = yup
       tipo: yup.string().required(),
       valor: yup.number().required(),
       data: yup.string().required(),
+      owner: yup.object().shape({
+        nome: yup.string().required(),
+        cpf: yup.string().required(),
+      }),
     })
   )
   .nullable();
